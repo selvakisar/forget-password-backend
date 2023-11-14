@@ -103,7 +103,7 @@ router.post("/forgetpass",async(req,res)=>{
         const resetToken = Math.random().toString(36).substring(2,5);
 
         const resetLink =
-        `https://forget-is-good.netlify.app/${resetToken}`;
+        `https://forget-is-good.netlify.app/resetpass/${resetToken}`;
 
         user.resetToken=resetToken;
 
