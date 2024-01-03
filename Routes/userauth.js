@@ -7,23 +7,7 @@ dotenv.config();
 const router=express.Router();
 import http from "http";
 
-import { google } from "googleapis";
-import { gmail } from "googleapis/build/src/apis/gmail/index.js";
-const OAuth2 = google.auth.OAuth2;
 
-const oauth2Client = new OAuth2(
-    "631662697401-e63rbh997maq5di47500rj4881u3qt9r.apps.googleusercontent.com",
-    "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",
-    "https://developers.google.com/oauthplayground" // Redirect URL
-        // process.env.CLIENT_ID,
-        // process.env.CLIENT_SECRET,
-        // process.env.REFRESH_TOKEN,
-    );
-oauth2Client.setCredentials({
-refresh_token: "1//0457nyUTF_M3bCgYIARAAGAQSNwF-L9IrDd1A9giWUwdeVaFnG0LLtx0dbJ6f9Zi7Z1uX19_afXGE5MOhztnjv2WD1XbBco2DPE8",
-});
-const accessToken = oauth2Client.getAccessToken()
-dotenv.config()
 // create user
 router.post("/signup",async (req, res)=>{
    
@@ -113,19 +97,7 @@ router.post("/forgetpass",async(req,res)=>{
         }
 
         const transporter = nodemailer.createTransport({
-            service:"gmail",
-           // use SSL
-            auth:{
-                type: "OAuth2",
-                user:process.env.EMAIL_ID,
-                pass:process.env.EMAIL_PASSWORD,
-                clientId:
-                 "631662697401-e63rbh997maq5di47500rj4881u3qt9r.apps.googleusercontent.com",
-          clientSecret:
-          "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",
-          refreshToken:
-          "1//0457nyUTF_M3bCgYIARAAGAQSNwF-L9IrDd1A9giWUwdeVaFnG0LLtx0dbJ6f9Zi7Z1uX19_afXGE5MOhztnjv2WD1XbBco2DPE8",
-                accessToken: accessToken
+          
         },
         tls: {
             rejectUnauthorized: false
